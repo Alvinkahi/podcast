@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcast Website</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+
+    const Header = () => (
+      <div className="header">
+       <img src="logo.png" alt="Podcast Logo" className="logo" />
+        <h1>Munga Dynasty</h1>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#episodes">Episodes</a></li>
+            <li><a href="host.html" class="button">Host</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    );
+    const Trailer = () => (
+   <section className="trailer">
+     <h1>Podcast Trailer</h1>
+     <video controls style={{ display: 'block', margin: '20px auto' }}>
+       <source src="trailer.mp4" type="video/mp4" />
+     </video>
+   </section>
+ );
+    const PodcastList = () => {
+      const podcasts = [
+        { title: "Episode 1: Introduction", description: "An introduction to our podcast.",audioSrc: "path/to/episode1.mp3", date: "2023-01-01" },
+        { title: "Episode 2: Deep Dive", description: "We go deep into the topic.",audioSrc: "path/to/episode2.mp3" , date: "2023-01-08"},
+        // Add more episodes here
+      ];
+
+      return (
+        <section className="podcast-list" id="episodes">
+          <h2>Episodes</h2>
+          <ul>
+            {podcasts.map((podcast, index) => (
+              <li key={index}>
+                <h3>{podcast.title}</h3>
+                <p>{podcast.description}</p>
+                <audio controls>
+              <source src={podcast.audioSrc} type="audio/mpeg" />
+            </audio>
+            <span>{podcast.date}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    };
+
+    const Footer = () => (
+      <footer className="footer">
+        <p>&copy; 2024 Munga Haven. All rights reserved.</p>
+        <div className="social-links">
+          <a href="#facebook">Facebook</a>
+          <a href="#twitter">Twitter</a>
+          <a href="#instagram">Instagram</a>
+        </div>
+      </footer>
+    );
+
+    const App = () => (
+      <div className="app">
+        <Header />
+         <Trailer />
+        <PodcastList />
+        <Footer />
+      </div>
+    );
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
